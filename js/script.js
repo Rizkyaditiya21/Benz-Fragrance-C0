@@ -1,15 +1,23 @@
-
-let cart = [];
-
-function addToCart(product){
-cart.push(product);
-alert(product + " added to cart");
+function addToCart(name, price){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+cart.push({name:name, price:price});
+localStorage.setItem("cart", JSON.stringify(cart));
+alert("Added to cart");
 }
 
-function checkout(){
-let message = "Order Benz Fragrance:%0A";
+function loadCart(){
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let container = document.getElementById("cart-items");
+let total = 0;
+
 cart.forEach(item=>{
-message += "- " + item + "%0A";
+container.innerHTML += `<p>${item.name} - Rp ${item.price}</p>`;
+total += item.price;
 });
-window.open("https://wa.me/62882000111956?text=" + message);
+
+document.getElementById("total").innerText = "Total: Rp " + total;
+}
+
+if(document.getElementById("cart-items")){
+loadCart();
 }

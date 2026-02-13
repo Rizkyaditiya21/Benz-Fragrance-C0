@@ -17,18 +17,24 @@ localStorage.setItem("cart", JSON.stringify(cart));
 updateCart();
 }
 
-function updateCart(){
-const count = document.getElementById("cart-count");
-const container = document.getElementById("cart-items");
-const totalEl = document.getElementById("cart-total");
-
-if(count){
-count.innerText = cart.reduce((a,b)=>a+b.qty,0);
+function openCart(){
+document.getElementById("cart-panel").classList.add("active");
+document.getElementById("cart-overlay").classList.add("active");
 }
 
-if(container){
+function closeCart(){
+document.getElementById("cart-panel").classList.remove("active");
+document.getElementById("cart-overlay").classList.remove("active");
+}
+
+function updateCart(){
+document.getElementById("cart-count").innerText =
+cart.reduce((a,b)=>a+b.qty,0);
+
+let container = document.getElementById("cart-items");
+let total = 0;
+
 container.innerHTML="";
-let total=0;
 
 cart.forEach(item=>{
 total += item.price * item.qty;
@@ -36,8 +42,13 @@ total += item.price * item.qty;
 container.innerHTML += `
 <div class="cart-item">
 <h4>${item.name}</h4>
-<p>${item.qty} x Rp ${item.price.toLocaleString()}</p>
-<button onclick="removeItem(${item.id})">Remove</button>
+<p>Rp ${item.price.toLocaleString()}</p>
+<div class="qty">
+<button onclick="changeQty(${item.id}, -1)">-</button>
+<span>${item.qty}</span>
+<button onclick="changeQty(${item.id}, 1)">+</button>
+<button onclick="removeItem(${item.id})">✕</button>
+</div>
 </div>
 `;
 });
@@ -46,8 +57,8 @@ if(cart.length >=3){
 total *=0.9;
 }
 
-totalEl.innerText="Total: Rp " + total.toLocaleString();
-}
+document.getElementById("cart-total").innerText =
+"Total: Rp " + total.toLocaleString();
 }
 
 function addToCart(id){
@@ -61,6 +72,19 @@ cart.push({...product, qty:1});
 }
 
 saveCart();
+openCart();
+}
+
+function changeQty(id, amount){
+const item = cart.find(i=>i.id===id);
+if(!item) return;
+
+item.qty += amount;
+if(item.qty <=0){
+cart = cart.filter(i=>i.id!==id);
+}
+
+saveCart();
 }
 
 function removeItem(id){
@@ -70,8 +94,6 @@ saveCart();
 
 function renderProducts(){
 const container = document.getElementById("product-list");
-if(!container) return;
-
 container.innerHTML="";
 
 products.forEach(p=>{

@@ -15,8 +15,7 @@
 <a href="#">Home</a>
 <a href="#shop">Shop</a>
 <a href="#about">About</a>
-<a href="#contact">Contact</a>
-<a href="#cart">Cart (<span id="cart-count">0</span>)</a>
+<a href="javascript:void(0)" onclick="openCart()">Cart (<span id="cart-count">0</span>)</a>
 </nav>
 </header>
 
@@ -31,27 +30,30 @@
 <div class="grid" id="product-list"></div>
 </section>
 
-<section id="cart" class="cart-section">
-<h2>Your Cart</h2>
-<div id="cart-items"></div>
-<h3 id="cart-total"></h3>
-<button onclick="checkoutWA()" class="btn">Checkout via WhatsApp</button>
-</section>
-
 <section id="about" class="about">
 <h2>Our Philosophy</h2>
 <p>Benz Fragrance Co is a modern luxury perfume house inspired by mystery and elegance.</p>
 </section>
 
-<section id="contact" class="contact">
-<h2>Contact</h2>
-<p>Email: benzfragrance@email.com</p>
-<p>Instagram: @benzfragranceco</p>
-</section>
-
 <footer>
 © 2026 Benz Fragrance Co
 </footer>
+
+<!-- CART OVERLAY -->
+<div id="cart-overlay" onclick="closeCart()"></div>
+
+<!-- SLIDE CART -->
+<div id="cart-panel">
+<div class="cart-header">
+<h3>Your Cart</h3>
+<button onclick="closeCart()">✕</button>
+</div>
+<div id="cart-items"></div>
+<div class="cart-footer">
+<h3 id="cart-total"></h3>
+<button onclick="checkoutWA()" class="btn full">Checkout via WhatsApp</button>
+</div>
+</div>
 
 <script src="script.js"></script>
 </body>

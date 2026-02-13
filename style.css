@@ -35,43 +35,51 @@ font-size:14px;
 }
 
 .hero{
-height:100vh;
+.hero{
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding-top:150px;
+padding:0 20px;
+margin-top:90px;
 background:
-linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
 url('images/hero.png') center/cover no-repeat;
 }
 
 .hero h1{
-font-size:65px;
+font-size:72px;
 font-family:'Playfair Display', serif;
-letter-spacing:2px;
+letter-spacing:3px;
+line-height:1.1;
+margin-top:-20px;
 }
 
 .hero p{
-margin-top:20px;
-color:#ccc;
+margin-top:25px;
+color:#cfcfcf;
+font-size:16px;
+letter-spacing:1px;
 }
 
 .btn{
 background:transparent;
 color:#d4af37;
-padding:14px 35px;
+padding:16px 40px;
 border:1px solid #d4af37;
 cursor:pointer;
-margin-top:30px;
+margin-top:40px;
 transition:0.4s;
-letter-spacing:1px;
+letter-spacing:1.5px;
 }
 
 .btn:hover{
 background:#d4af37;
 color:black;
+}
+
 }
 
 .products{

@@ -1,67 +1,82 @@
-<div class="products">
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Shop - Benz Fragrance Co</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
 
-<div class="product">
-<img src="images/noir-desire.jpg">
-<h3>Noir Desire</h3>
-<p>Dark • Warm • Seductive</p>
-<button onclick="addToCart('Noir Desire')">Add to Cart</button>
-</div>
+<header>
+  <div class="logo">BENZ FRAGRANCE CO</div>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="shop.html">Shop</a>
+    <a href="cart.html">Cart 🛒</a>
+  </nav>
+</header>
 
-<div class="product">
-<img src="images/moon-blush.jpg">
-<h3>Moon Blush</h3>
-<p>Soft • Sweet • Romantic</p>
-<button onclick="addToCart('Moon Blush')">Add to Cart</button>
-</div>
+<section class="shop">
+  <h1>Our Collection</h1>
+  <div class="grid">
 
-<div class="product">
-<img src="images/moon-dew.jpg">
-<h3>Moon Dew</h3>
-<p>Fresh • Clean • Airy</p>
-<button onclick="addToCart('Moon Dew')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Noir Desire</h3>
+      <p>Rp 299.000</p>
+      <button onclick="addToCart('Noir Desire',299000)">Add to Cart</button>
+    </div>
 
-<div class="product">
-<img src="images/velvet-kiss.jpg">
-<h3>Velvet Kiss</h3>
-<p>Floral • Creamy • Elegant</p>
-<button onclick="addToCart('Velvet Kiss')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Moon Blush</h3>
+      <p>Rp 289.000</p>
+      <button onclick="addToCart('Moon Blush',289000)">Add to Cart</button>
+    </div>
 
-<div class="product">
-<img src="images/azure-emotion.jpg">
-<h3>Azure Emotion</h3>
-<p>Oceanic • Calm • Deep</p>
-<button onclick="addToCart('Azure Emotion')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Moon Dew</h3>
+      <p>Rp 279.000</p>
+      <button onclick="addToCart('Moon Dew',279000)">Add to Cart</button>
+    </div>
 
-<div class="product">
-<img src="images/azure-blue.jpg">
-<h3>Azure Blue</h3>
-<p>Fresh • Marine • Masculine</p>
-<button onclick="addToCart('Azure Blue')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Velvet Kiss</h3>
+      <p>Rp 319.000</p>
+      <button onclick="addToCart('Velvet Kiss',319000)">Add to Cart</button>
+    </div>
 
-<div class="product">
-<img src="images/melon-blanc.jpg">
-<h3>Melon Blanc</h3>
-<p>Fruity • Light • Youthful</p>
-<button onclick="addToCart('Melon Blanc')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Azure Emotion</h3>
+      <p>Rp 309.000</p>
+      <button onclick="addToCart('Azure Emotion',309000)">Add to Cart</button>
+    </div>
 
-<div class="product">
-<img src="images/blue-horizon.jpg">
-<h3>Blue Horizon</h3>
-<p>Citrus • Fresh • Energetic</p>
-<button onclick="addToCart('Blue Horizon')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Azure Blue</h3>
+      <p>Rp 299.000</p>
+      <button onclick="addToCart('Azure Blue',299000)">Add to Cart</button>
+    </div>
 
-<div class="product">
-<img src="images/midnight-addict.jpg">
-<h3>Midnight Addict</h3>
-<p>Intense • Smoky • Bold</p>
-<button onclick="addToCart('Midnight Addict')">Add to Cart</button>
-</div>
+    <div class="card">
+      <h3>Melon Blanc</h3>
+      <p>Rp 269.000</p>
+      <button onclick="addToCart('Melon Blanc',269000)">Add to Cart</button>
+    </div>
 
-</div>
+    <div class="card">
+      <h3>Blue Horizon</h3>
+      <p>Rp 289.000</p>
+      <button onclick="addToCart('Blue Horizon',289000)">Add to Cart</button>
+    </div>
 
+    <div class="card">
+      <h3>Midnight Addict</h3>
+      <p>Rp 329.000</p>
+      <button onclick="addToCart('Midnight Addict',329000)">Add to Cart</button>
+    </div>
+
+  </div>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>

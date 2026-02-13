@@ -1,5 +1,10 @@
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
 background:#0c0c0c;
 color:white;
 font-family:'Montserrat', sans-serif;
@@ -18,14 +23,15 @@ z-index:1000;
 
 .logo{
 font-family:'Playfair Display', serif;
-letter-spacing:3px;
+letter-spacing:4px;
+font-size:18px;
 }
 
 nav a{
 color:#d4af37;
-margin-left:25px;
+margin-left:30px;
 text-decoration:none;
-cursor:pointer;
+font-size:14px;
 }
 
 .hero{
@@ -36,25 +42,36 @@ justify-content:center;
 align-items:center;
 text-align:center;
 padding-top:80px;
-background:#111;
+background:
+linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
+url('images/hero.jpg') center/cover no-repeat;
 }
 
 .hero h1{
-font-size:60px;
+font-size:65px;
 font-family:'Playfair Display', serif;
+letter-spacing:2px;
+}
+
+.hero p{
+margin-top:20px;
+color:#ccc;
 }
 
 .btn{
-background:#d4af37;
-color:black;
-padding:12px 30px;
-border:none;
+background:transparent;
+color:#d4af37;
+padding:14px 35px;
+border:1px solid #d4af37;
 cursor:pointer;
-margin-top:20px;
+margin-top:30px;
+transition:0.4s;
+letter-spacing:1px;
 }
 
-.full{
-width:100%;
+.btn:hover{
+background:#d4af37;
+color:black;
 }
 
 .products{
@@ -62,21 +79,38 @@ padding:120px 80px;
 text-align:center;
 }
 
+.products h2{
+font-family:'Playfair Display', serif;
+font-size:40px;
+}
+
+.products h2::after{
+content:"";
+display:block;
+width:60px;
+height:2px;
+background:#d4af37;
+margin:15px auto 0;
+}
+
 .grid{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:40px;
-margin-top:50px;
+margin-top:60px;
 }
 
 .card{
 background:#111;
 padding:20px;
 transition:0.4s;
+border:1px solid #1c1c1c;
 }
 
 .card:hover{
 transform:translateY(-10px);
+box-shadow:0 20px 40px rgba(212,175,55,0.15);
+border:1px solid #d4af37;
 }
 
 .card img{
@@ -86,7 +120,43 @@ object-fit:contain;
 background:#000;
 }
 
+.card h3{
+margin-top:15px;
+}
+
+.about{
+padding:120px 20px;
+text-align:center;
+background:#0a0a0a;
+}
+
+.testimonial{
+padding:120px 20px;
+text-align:center;
+background:#0c0c0c;
+}
+
+.testimonial h2{
+font-family:'Playfair Display', serif;
+margin-bottom:30px;
+}
+
+.testi-box{
+max-width:600px;
+margin:auto;
+font-style:italic;
+color:#ccc;
+}
+
+footer{
+text-align:center;
+padding:40px;
+background:black;
+color:#777;
+}
+
 /* CART */
+
 #cart-overlay{
 position:fixed;
 top:0;
@@ -107,7 +177,7 @@ width:380px;
 height:100%;
 background:#111;
 padding:30px;
-transition:0.4s;
+transition: all 0.5s cubic-bezier(.77,0,.18,1);
 z-index:999;
 display:flex;
 flex-direction:column;
@@ -124,7 +194,6 @@ display:block;
 .cart-header{
 display:flex;
 justify-content:space-between;
-align-items:center;
 margin-bottom:20px;
 }
 
@@ -141,8 +210,16 @@ margin-top:10px;
 
 .qty button{
 padding:5px 10px;
+background:#222;
+color:#d4af37;
+border:1px solid #333;
+cursor:pointer;
 }
 
 .cart-footer{
 margin-top:auto;
+}
+
+.full{
+width:100%;
 }

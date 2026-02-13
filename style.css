@@ -316,3 +316,131 @@ margin-top:auto;
 .full{
 width:100%;
 }
+/* ================================
+   ULTRA PREMIUM FULL EXPERIENCE
+================================ */
+
+/* Smooth scroll */
+html{
+scroll-behavior:smooth;
+}
+
+/* HERO CINEMATIC */
+.hero{
+position:relative;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
+background:
+linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+url('images/hero.png') center/cover no-repeat;
+animation:slowZoom 18s ease-in-out infinite alternate;
+background-attachment:fixed;
+z-index:0;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+opacity:0.05;
+mix-blend-mode:overlay;
+z-index:1;
+}
+
+.hero h1,
+.hero p,
+.hero .btn{
+position:relative;
+z-index:2;
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp 1.2s ease forwards;
+}
+
+.hero h1{
+animation-delay:0.4s;
+text-shadow:
+0 2px 15px rgba(0,0,0,0.9),
+0 0 35px rgba(212,175,55,0.12);
+}
+
+.hero h1::after{
+content:"";
+display:block;
+width:0;
+height:2px;
+background:#d4af37;
+margin:20px auto 0;
+animation:goldLine 1.5s ease forwards;
+animation-delay:1.2s;
+}
+
+.hero p{
+animation-delay:0.8s;
+}
+
+.hero .btn{
+animation-delay:1.2s;
+}
+
+.btn:hover{
+box-shadow:0 0 30px rgba(212,175,55,0.6);
+transform:translateY(-3px);
+}
+
+/* SECTION REVEAL */
+section{
+opacity:0;
+transform:translateY(60px);
+transition:1s ease;
+}
+
+section.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* PRODUCT STAGGER */
+.card{
+opacity:0;
+transform:translateY(40px);
+transition:0.8s ease;
+}
+
+.card.show{
+opacity:1;
+transform:translateY(0);
+}
+
+/* PREMIUM GLASS CART */
+#cart-panel{
+background:rgba(20,20,20,0.75);
+backdrop-filter:blur(15px);
+border-left:1px solid rgba(212,175,55,0.2);
+box-shadow:-10px 0 40px rgba(0,0,0,0.8);
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes goldLine{
+to{
+width:120px;
+}
+}
+
+@keyframes slowZoom{
+from{transform:scale(1);}
+to{transform:scale(1.08);}
+}

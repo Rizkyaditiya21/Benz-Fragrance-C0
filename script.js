@@ -1,23 +1,98 @@
 const products = [
-{ name:"Noir Desire", price:"299.000", img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1200"},
-{ name:"Moon Blush", price:"289.000", img:"https://images.unsplash.com/photo-1600180758890-6f1a3d77b2d6?q=80&w=1200"},
-{ name:"Moon Dew", price:"279.000", img:"https://images.unsplash.com/photo-1595429035839-c99c298ffdde?q=80&w=1200"},
-{ name:"Velvet Kiss", price:"309.000", img:"https://images.unsplash.com/photo-1585386959984-a41552262f9e?q=80&w=1200"},
-{ name:"Azure Emotion", price:"299.000", img:"https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=1200"},
-{ name:"Azure Blue", price:"289.000", img:"https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=1200"},
-{ name:"Melon Blanc", price:"269.000", img:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200"},
-{ name:"Blue Horizon", price:"299.000", img:"https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=1200"},
-{ name:"Midnight Addict", price:"319.000", img:"https://images.unsplash.com/photo-1600181954344-12b7c5e7f3b3?q=80&w=1200"}
+{ id:1, name:"Noir Desire", price:299000, img:"images/noir.png"},
+{ id:2, name:"Moon Blush", price:289000, img:"images/moonblush.png"},
+{ id:3, name:"Moon Dew", price:279000, img:"images/moondew.png"},
+{ id:4, name:"Velvet Kiss", price:309000, img:"images/velvet.png"},
+{ id:5, name:"Azure Emotion", price:299000, img:"images/azureemotion.png"},
+{ id:6, name:"Azure Blue", price:289000, img:"images/azureblue.png"},
+{ id:7, name:"Melon Blanc", price:269000, img:"images/melon.png"},
+{ id:8, name:"Blue Horizon", price:299000, img:"images/horizon.png"},
+{ id:9, name:"Midnight Addict", price:319000, img:"images/midnight.png"}
 ];
 
-const container = document.getElementById("product-list");
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-products.forEach(p=>{
-container.innerHTML+=`
-<div class="card">
-<img src="${p.img}">
-<h3>${p.name}</h3>
-<p>Rp ${p.price}</p>
+function saveCart(){
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCart();
+}
+
+function updateCart(){
+const count = document.getElementById("cart-count");
+const container = document.getElementById("cart-items");
+const totalEl = document.getElementById("cart-total");
+
+if(count){
+count.innerText = cart.reduce((a,b)=>a+b.qty,0);
+}
+
+if(container){
+container.innerHTML="";
+let total=0;
+
+cart.forEach(item=>{
+total += item.price * item.qty;
+
+container.innerHTML += `
+<div class="cart-item">
+<h4>${item.name}</h4>
+<p>${item.qty} x Rp ${item.price.toLocaleString()}</p>
+<button onclick="removeItem(${item.id})">Remove</button>
 </div>
 `;
 });
+
+if(cart.length >=3){
+total *=0.9;
+}
+
+totalEl.innerText="Total: Rp " + total.toLocaleString();
+}
+}
+
+function addToCart(id){
+const product = products.find(p=>p.id===id);
+const exist = cart.find(item=>item.id===id);
+
+if(exist){
+exist.qty++;
+}else{
+cart.push({...product, qty:1});
+}
+
+saveCart();
+}
+
+function removeItem(id){
+cart = cart.filter(item=>item.id!==id);
+saveCart();
+}
+
+function renderProducts(){
+const container = document.getElementById("product-list");
+if(!container) return;
+
+container.innerHTML="";
+
+products.forEach(p=>{
+container.innerHTML += `
+<div class="card">
+<img src="${p.img}">
+<h3>${p.name}</h3>
+<p>Rp ${p.price.toLocaleString()}</p>
+<button onclick="addToCart(${p.id})">Add to Cart</button>
+</div>
+`;
+});
+}
+
+function checkoutWA(){
+let message="Order Benz Fragrance:%0A";
+cart.forEach(item=>{
+message += `${item.name} x${item.qty}%0A`;
+});
+window.open("https://wa.me/62882000111956?text="+message);
+}
+
+renderProducts();
+updateCart();

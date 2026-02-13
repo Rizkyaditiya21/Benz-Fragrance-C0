@@ -1,23 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
 <title>Product Detail</title>
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-<div class="product-detail">
-  <img id="productImage">
-  <div>
-    <h1 id="productName"></h1>
-    <p id="productPrice"></p>
-    <p id="productDesc"></p>
-    <button onclick="addCurrentProduct()">Add to Cart</button>
-  </div>
-</div>
+<header>
+<div class="logo">BENZ FRAGRANCE CO</div>
+<nav>
+<a href="shop.html">Back to Shop</a>
+<a href="cart.html">Cart (<span id="cart-count">0</span>)</a>
+</nav>
+</header>
 
-<script src="script.js"></script>
+<div id="product-detail" class="product-detail"></div>
+
+<script src="js/script.js"></script>
 </body>
 </html>
-

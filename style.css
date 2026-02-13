@@ -34,45 +34,138 @@ text-decoration:none;
 font-size:14px;
 }
 
+/* =========================
+   ULTRA PREMIUM HERO
+========================= */
+
 .hero{
-height:100vh;
+position:relative;
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding-top:80px;
+padding:0 20px;
+padding-top:100px;
+overflow:hidden;
+background:black;
+}
+
+/* Background cinematic layer */
+.hero::before{
+content:"";
+position:absolute;
+inset:0;
 background:
-linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
-url('images/hero.pngg') center/cover no-repeat;
+linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.85)),
+url('images/hero.png') center/cover no-repeat;
+animation:slowZoom 18s ease-in-out infinite alternate;
+z-index:0;
 }
 
+/* Luxury grain overlay */
+.hero::after{
+content:"";
+position:absolute;
+inset:0;
+background:url('https://www.transparenttextures.com/patterns/asfalt-light.png');
+opacity:0.05;
+mix-blend-mode:overlay;
+z-index:1;
+}
+
+/* Content above layers */
+.hero h1,
+.hero p,
+.hero .btn{
+position:relative;
+z-index:2;
+opacity:0;
+transform:translateY(40px);
+animation:fadeUp 1.2s ease forwards;
+}
+
+/* TITLE */
 .hero h1{
-font-size:65px;
+font-size:72px;
 font-family:'Playfair Display', serif;
-letter-spacing:2px;
+letter-spacing:3px;
+line-height:1.1;
+margin-bottom:25px;
+animation-delay:0.4s;
+
+text-shadow:
+0 2px 15px rgba(0,0,0,0.9),
+0 0 35px rgba(212,175,55,0.12);
 }
 
+/* Animated gold underline */
+.hero h1::after{
+content:"";
+display:block;
+width:0;
+height:2px;
+background:#d4af37;
+margin:20px auto 0;
+animation:goldLine 1.5s ease forwards;
+animation-delay:1.2s;
+}
+
+/* Subtitle */
 .hero p{
-margin-top:20px;
-color:#ccc;
+color:#cfcfcf;
+font-size:16px;
+letter-spacing:1px;
+margin-bottom:40px;
+animation-delay:0.8s;
 }
 
+/* Button */
 .btn{
 background:transparent;
 color:#d4af37;
-padding:14px 35px;
+padding:16px 45px;
 border:1px solid #d4af37;
 cursor:pointer;
-margin-top:30px;
 transition:0.4s;
-letter-spacing:1px;
+letter-spacing:2px;
+animation-delay:1.2s;
 }
 
 .btn:hover{
 background:#d4af37;
 color:black;
+box-shadow:0 0 30px rgba(212,175,55,0.6);
+transform:translateY(-3px);
 }
+
+/* =========================
+   ANIMATIONS
+========================= */
+
+@keyframes fadeUp{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+
+@keyframes goldLine{
+to{
+width:120px;
+}
+}
+
+@keyframes slowZoom{
+from{
+transform:scale(1);
+}
+to{
+transform:scale(1.08);
+}
+}
+
 
 .products{
 padding:120px 80px;

@@ -25,17 +25,18 @@ nav a{
 color:#d4af37;
 margin-left:25px;
 text-decoration:none;
+cursor:pointer;
 }
 
 .hero{
 height:100vh;
-background:#111;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding-top:80px;
+background:#111;
 }
 
 .hero h1{
@@ -47,10 +48,13 @@ font-family:'Playfair Display', serif;
 background:#d4af37;
 color:black;
 padding:12px 30px;
-text-decoration:none;
 border:none;
 cursor:pointer;
 margin-top:20px;
+}
+
+.full{
+width:100%;
 }
 
 .products{
@@ -78,29 +82,67 @@ transform:translateY(-10px);
 .card img{
 width:100%;
 height:350px;
-object-fit:contain; /* penting untuk PNG */
+object-fit:contain;
 background:#000;
 }
 
-.cart-section{
-padding:100px 80px;
+/* CART */
+#cart-overlay{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,0.5);
+backdrop-filter:blur(5px);
+display:none;
+z-index:998;
+}
+
+#cart-panel{
+position:fixed;
+top:0;
+right:-400px;
+width:380px;
+height:100%;
 background:#111;
+padding:30px;
+transition:0.4s;
+z-index:999;
+display:flex;
+flex-direction:column;
+}
+
+#cart-panel.active{
+right:0;
+}
+
+#cart-overlay.active{
+display:block;
+}
+
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
 }
 
 .cart-item{
-margin-bottom:20px;
 border-bottom:1px solid #333;
-padding-bottom:10px;
+padding:15px 0;
 }
 
-.about, .contact{
-padding:120px 80px;
-text-align:center;
-background:#0f0f0f;
+.qty{
+display:flex;
+gap:10px;
+margin-top:10px;
 }
 
-footer{
-text-align:center;
-padding:30px;
-background:black;
+.qty button{
+padding:5px 10px;
+}
+
+.cart-footer{
+margin-top:auto;
 }

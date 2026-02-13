@@ -44,7 +44,7 @@ text-align:center;
 padding-top:80px;
 background:
 linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.8)),
-url('images/hero.jpg') center/cover no-repeat;
+url('images/hero.png') center/cover no-repeat;
 }
 
 .hero h1{

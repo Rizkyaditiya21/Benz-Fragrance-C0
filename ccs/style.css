@@ -1,160 +1,73 @@
-let products = [
-  {
-    name: "Noir Desire",
-    price: 299000,
-    img: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1200",
-    desc: "Dark, bold & seductive fragrance."
-  },
-  {
-    name: "Moon Blush",
-    price: 289000,
-    img: "https://images.unsplash.com/photo-1600180758890-6f1a3d77b2d6?q=80&w=1200",
-    desc: "Soft floral with creamy sweetness."
-  },
-  {
-    name: "Moon Dew",
-    price: 279000,
-    img: "https://images.unsplash.com/photo-1595429035839-c99c298ffdde?q=80&w=1200",
-    desc: "Fresh, calm & elegant."
-  },
-  {
-    name: "Velvet Kiss",
-    price: 319000,
-    img: "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1200",
-    desc: "Sweet, sexy & memorable."
-  },
-  {
-    name: "Azure Emotion",
-    price: 309000,
-    img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200",
-    desc: "Elegant, smooth & refined."
-  },
-  {
-    name: "Azure Blue",
-    price: 299000,
-    img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1200",
-    desc: "Fresh marine vibes."
-  },
-  {
-    name: "Melon Blanc",
-    price: 269000,
-    img: "https://images.unsplash.com/photo-1562158070-956c836c91a7?q=80&w=1200",
-    desc: "Playful & fruity summer scent."
-  },
-  {
-    name: "Blue Horizon",
-    price: 289000,
-    img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1200",
-    desc: "Cool & breezy."
-  },
-  {
-    name: "Midnight Addict",
-    price: 329000,
-    img: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=1200",
-    desc: "Intense & mysterious night scent."
-  }
-];
-
-let cart = [];
-let discount = 0;
-
-// Render product cards
-function renderProducts() {
-  let container = document.getElementById("product-list");
-  if (!container) return;
-
-  container.innerHTML = "";
-
-  products.forEach((p, i) => {
-    container.innerHTML += `
-      <div class="product">
-        <img src="${p.img}">
-        <h3>${p.name}</h3>
-        <p class="price">Rp ${p.price.toLocaleString()}</p>
-        <p class="desc">${p.desc}</p>
-        <button onclick="addToCart(${i})">Add to Cart</button>
-      </div>
-    `;
-  });
+body {
+margin:0;
+font-family: Arial, sans-serif;
+background:#000;
+color:#fff;
 }
 
-// Add to cart
-function addToCart(index) {
-  cart.push(products[index]);
-  updateCart();
-  toggleCart(true);
+header {
+display:flex;
+justify-content:space-between;
+padding:20px 50px;
+background:#111;
 }
 
-// Update cart UI
-function updateCart() {
-  let items = document.getElementById("cartItems");
-  if (!items) return;
-
-  items.innerHTML = "";
-  let total = 0;
-
-  cart.forEach((p, idx) => {
-    items.innerHTML += `
-      <div class="cart-item">
-        <span>${p.name}</span>
-        <span>Rp ${p.price.toLocaleString()}</span>
-        <button onclick="removeFromCart(${idx})">×</button>
-      </div>
-    `;
-    total += p.price;
-  });
-
-  total = Math.floor(total - total * discount);
-  document.getElementById("cartTotal").innerText = "Total: Rp " + total.toLocaleString();
+.logo {
+font-weight:bold;
+letter-spacing:2px;
 }
 
-// Remove item
-function removeFromCart(idx) {
-  cart.splice(idx, 1);
-  updateCart();
+nav a {
+color:#d4af37;
+margin-left:20px;
+text-decoration:none;
 }
 
-// Toggle cart panel
-function toggleCart(open = null) {
-  let panel = document.getElementById("cartPanel");
-  if (open === true) {
-    panel.classList.add("active");
-  } else if (open === false) {
-    panel.classList.remove("active");
-  } else {
-    panel.classList.toggle("active");
-  }
+.hero {
+text-align:center;
+padding:100px 20px;
+background:url('https://images.unsplash.com/photo-1585386959984-a41552262f9e?q=80&w=1600') center/cover;
 }
 
-// Apply discount
-function applyDiscount() {
-  let code = document.getElementById("discountCode").value.trim();
-  if (code === "BENZ10") {
-    discount = 0.1;
-    alert("Discount 10% applied!");
-    updateCart();
-  } else {
-    alert("Invalid code");
-  }
+.btn-gold {
+background:#d4af37;
+color:#000;
+padding:10px 20px;
+text-decoration:none;
 }
 
-// Checkout
-function checkout() {
-  if (cart.length === 0) {
-    alert("Cart is empty!");
-    return;
-  }
-
-  let phone = "628123456789"; // change to your WA
-  let message = "Halo, saya ingin order:%0A";
-
-  cart.forEach(p => {
-    message += `${p.name} - Rp ${p.price.toLocaleString()}%0A`;
-  });
-
-  message += "%0A" + document.getElementById("cartTotal").innerText;
-
-  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
+.grid {
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+padding:50px;
 }
 
-renderProducts();
+.card {
+background:#111;
+padding:20px;
+text-align:center;
+transition:0.3s;
+}
+
+.card:hover {
+transform:scale(1.05);
+}
+
+.card img {
+width:100%;
+height:300px;
+object-fit:cover;
+}
+
+button {
+background:#d4af37;
+border:none;
+padding:10px;
+cursor:pointer;
+}
+
+.page-title {
+text-align:center;
+margin-top:40px;
+}

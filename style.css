@@ -439,6 +439,130 @@ to{
 width:120px;
 }
 }
+/* ===============================
+   GOLD SHIMMER LEVEL DEWA
+   BENZ FRAGRANCE CO
+================================ */
+
+/* Fade In Smooth */
+@keyframes smoothFade {
+  0% { opacity: 0; transform: translateY(25px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+.product-card {
+  position: relative;
+  background: #0a0a0a;
+  border-radius: 18px;
+  padding: 20px;
+  overflow: hidden;
+  animation: smoothFade 1.2s ease forwards;
+  border: 1px solid rgba(212,175,55,0.25);
+  box-shadow:
+    0 0 20px rgba(212,175,55,0.08),
+    inset 0 0 25px rgba(212,175,55,0.03);
+  transition: all 0.5s ease;
+}
+
+/* ===============================
+   GOLD SHIMMER BORDER EFFECT
+================================ */
+
+.product-card::before {
+  content: "";
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(212,175,55,0.8),
+    rgba(255,215,0,0.9),
+    rgba(212,175,55,0.8),
+    transparent
+  );
+  background-size: 300% 300%;
+  animation: goldShimmer 6s linear infinite;
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+          mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Shimmer Animation */
+@keyframes goldShimmer {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+/* Hover Elevation */
+.product-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow:
+    0 0 35px rgba(212,175,55,0.3),
+    0 0 70px rgba(212,175,55,0.15);
+}
+
+/* ===============================
+   LUXURY TEXT EFFECT
+================================ */
+
+.product-card h3 {
+  color: #ffffff;
+  letter-spacing: 1.5px;
+  text-shadow:
+    0 0 8px rgba(212,175,55,0.4),
+    0 0 18px rgba(212,175,55,0.25);
+  transition: 0.4s ease;
+}
+
+.product-card p {
+  color: #d4af37;
+  font-weight: 500;
+  text-shadow:
+    0 0 8px rgba(212,175,55,0.6),
+    0 0 20px rgba(212,175,55,0.3);
+}
+
+/* ===============================
+   BUTTON GOLD LUXE
+================================ */
+
+.product-card button {
+  background: linear-gradient(135deg, #d4af37, #f5d77a);
+  color: #000;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 30px;
+  font-weight: 700;
+  letter-spacing: 1px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 15px rgba(212,175,55,0.5);
+}
+
+.product-card button:hover {
+  transform: scale(1.08);
+  box-shadow:
+    0 0 25px rgba(212,175,55,0.9),
+    0 0 45px rgba(212,175,55,0.6);
+}
+
+/* ===============================
+   IMAGE PREMIUM GLOW
+================================ */
+
+.product-card img {
+  transition: all 0.6s ease;
+}
+
+.product-card:hover img {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
 
 @keyframes slowZoom{
 from{transform:scale(1);}

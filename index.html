@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Benz Fragrance Co</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 
 </head>
@@ -14,47 +14,54 @@
 <header>
   <div class="logo">BENZ FRAGRANCE CO</div>
   <nav>
-    <a href="#">Home</a>
-    <a href="#">Shop</a>
-    <a href="#">About</a>
-    <a href="#">Contact</a>
+    <a href="#collection">Collection</a>
+    <a href="#testimonial">Reviews</a>
+    <a href="#" onclick="toggleCart()">Cart 🛒</a>
   </nav>
 </header>
 
 <section class="hero">
-  <div class="hero-content">
-    <h1>Luxury Perfume</h1>
-    <p>Crafted for Bold Personalities</p>
-    <button>Explore Collection</button>
+  <h1>Signature Niche Perfume</h1>
+  <p>Crafted for identity & unforgettable presence</p>
+</section>
+
+<section id="collection" class="collection">
+  <h2>Our Collection</h2>
+  <div class="products" id="product-list"></div>
+</section>
+
+<section id="testimonial" class="testimonial">
+  <h2>What Our Clients Say</h2>
+  <div class="reviews">
+    <div class="review">
+      <p>"Smells like confidence. Very premium."</p>
+      <span>— Andra, Jakarta</span>
+    </div>
+    <div class="review">
+      <p>"Packaging & scent feel expensive."</p>
+      <span>— Dita, Surabaya</span>
+    </div>
+    <div class="review">
+      <p>"Projection kuat & tahan lama."</p>
+      <span>— Reza, Bandung</span>
+    </div>
   </div>
 </section>
 
-<section class="collection">
-  <h2>Signature Collection</h2>
-
-  <div class="products">
-
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1200">
-      <h3>Noir Desire</h3>
-    </div>
-
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1600180758890-6f1a3d77b2d6?q=80&w=1200">
-      <h3>Moon Blush</h3>
-    </div>
-
-    <div class="product">
-      <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=1200">
-      <h3>Midnight Addict</h3>
-    </div>
-
-  </div>
-</section>
+<!-- SIDE CART -->
+<div class="cart-panel" id="cartPanel">
+  <h3>Your Cart</h3>
+  <div id="cartItems"></div>
+  <p id="cartTotal"></p>
+  <input type="text" id="discountCode" placeholder="Discount Code">
+  <button onclick="applyDiscount()">Apply Discount</button>
+  <button onclick="checkout()">Checkout via WhatsApp</button>
+</div>
 
 <footer>
-  © 2026 Benz Fragrance Co
+© 2026 Benz Fragrance Co
 </footer>
 
+<script src="script.js"></script>
 </body>
 </html>

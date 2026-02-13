@@ -16,6 +16,7 @@
 <a href="#shop">Shop</a>
 <a href="#about">About</a>
 <a href="#contact">Contact</a>
+<a href="#cart">Cart (<span id="cart-count">0</span>)</a>
 </nav>
 </header>
 
@@ -30,9 +31,16 @@
 <div class="grid" id="product-list"></div>
 </section>
 
+<section id="cart" class="cart-section">
+<h2>Your Cart</h2>
+<div id="cart-items"></div>
+<h3 id="cart-total"></h3>
+<button onclick="checkoutWA()" class="btn">Checkout via WhatsApp</button>
+</section>
+
 <section id="about" class="about">
 <h2>Our Philosophy</h2>
-<p>Benz Fragrance Co is a modern luxury perfume house inspired by mystery, elegance and confidence.</p>
+<p>Benz Fragrance Co is a modern luxury perfume house inspired by mystery and elegance.</p>
 </section>
 
 <section id="contact" class="contact">
@@ -48,4 +56,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-

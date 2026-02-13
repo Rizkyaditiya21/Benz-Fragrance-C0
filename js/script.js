@@ -1,85 +1,64 @@
-let products = [
-{
-name:"Noir Desire",
-price:299000,
-img:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1200",
-desc:"Dark, bold & seductive fragrance."
-},
-{
-name:"Moon Blush",
-price:289000,
-img:"https://images.unsplash.com/photo-1600180758890-6f1a3d77b2d6?q=80&w=1200",
-desc:"Soft floral with creamy sweetness."
-},
-{
-name:"Midnight Addict",
-price:329000,
-img:"https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=1200",
-desc:"Intense & mysterious night scent."
-}
+const products = [
+{ id:1, name:"Noir Desire", price:299000, image:"https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1200", desc:"Dark, bold & addictive."},
+{ id:2, name:"Moon Blush", price:289000, image:"https://images.unsplash.com/photo-1600180758890-6f1a3d77b2d6?q=80&w=1200", desc:"Soft floral creamy scent."},
+{ id:3, name:"Moon Dew", price:279000, image:"https://images.unsplash.com/photo-1595429035839-c99c298ffdde?q=80&w=1200", desc:"Fresh and calming."},
+{ id:4, name:"Velvet Kiss", price:309000, image:"https://images.unsplash.com/photo-1585386959984-a41552262f9e?q=80&w=1200", desc:"Romantic & sensual."},
+{ id:5, name:"Azure Emotion", price:299000, image:"https://images.unsplash.com/photo-1588405748880-12d1d2a59f75?q=80&w=1200", desc:"Oceanic freshness."},
+{ id:6, name:"Azure Blue", price:289000, image:"https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=1200", desc:"Clean & aquatic."},
+{ id:7, name:"Melon Blanc", price:269000, image:"https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200", desc:"Sweet fruity fresh."},
+{ id:8, name:"Blue Horizon", price:299000, image:"https://images.unsplash.com/photo-1587017539504-67cfbddac569?q=80&w=1200", desc:"Fresh sky breeze."},
+{ id:9, name:"Midnight Addict", price:319000, image:"https://images.unsplash.com/photo-1600181954344-12b7c5e7f3b3?q=80&w=1200", desc:"Intense & mysterious."}
 ];
 
-let cart=[];
-let discount=0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
-function renderProducts(){
-let container=document.getElementById("product-list");
-if(!container) return;
+function updateCartCount(){
+document.querySelectorAll("#cart-count").forEach(el=>{
+el.innerText = cart.length;
+});
+}
+updateCartCount();
 
-products.forEach((p,i)=>{
-container.innerHTML+=`
-<div class="product">
-<img src="${p.img}">
+function displayProducts(){
+const list = document.getElementById("product-list");
+if(!list) return;
+list.innerHTML="";
+products.forEach(p=>{
+list.innerHTML+=`
+<div class="card">
+<img src="${p.image}">
 <h3>${p.name}</h3>
 <p>Rp ${p.price}</p>
-<button onclick="addToCart(${i})">Add to Cart</button>
+<button onclick="addToCart(${p.id})">Add to Cart</button>
 </div>`;
 });
 }
+displayProducts();
 
-function addToCart(index){
-cart.push(products[index]);
-updateCart();
+function addToCart(id){
+const product = products.find(p=>p.id===id);
+cart.push(product);
+localStorage.setItem("cart", JSON.stringify(cart));
+updateCartCount();
+alert("Added to cart");
 }
 
-function updateCart(){
-let items=document.getElementById("cartItems");
-items.innerHTML="";
+function displayCart(){
+const container = document.getElementById("cart-items");
+if(!container) return;
+container.innerHTML="";
 let total=0;
-
-cart.forEach(p=>{
-items.innerHTML+=`<p>${p.name} - Rp ${p.price}</p>`;
-total+=p.price;
+cart.forEach(item=>{
+total+=item.price;
+container.innerHTML+=`
+<div class="card">
+<h3>${item.name}</h3>
+<p>Rp ${item.price}</p>
+</div>`;
 });
-
-total=total-(total*discount);
-document.getElementById("cartTotal").innerText="Total: Rp "+total;
+if(cart.length>=3){
+total = total*0.9;
 }
-
-function toggleCart(){
-document.getElementById("cartPanel").classList.toggle("active");
+document.getElementById("total-price").innerText="Total: Rp "+total;
 }
-
-function applyDiscount(){
-let code=document.getElementById("discountCode").value;
-if(code==="BENZ10"){
-discount=0.1;
-alert("Discount Applied 10%");
-updateCart();
-}
-}
-
-function checkout(){
-let totalText=document.getElementById("cartTotal").innerText;
-let phone="628123456789";
-let message="Halo saya ingin order:%0A";
-
-cart.forEach(p=>{
-message+=p.name+" - Rp "+p.price+"%0A";
-});
-
-message+=totalText;
-window.open(`https://wa.me/${phone}?text=${message}`);
-}
-
-renderProducts();
+displayCart();

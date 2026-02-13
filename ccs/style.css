@@ -1,119 +1,160 @@
-*{margin:0;padding:0;box-sizing:border-box;}
+let products = [
+  {
+    name: "Noir Desire",
+    price: 299000,
+    img: "https://images.unsplash.com/photo-1615634260167-c8cdede054de?q=80&w=1200",
+    desc: "Dark, bold & seductive fragrance."
+  },
+  {
+    name: "Moon Blush",
+    price: 289000,
+    img: "https://images.unsplash.com/photo-1600180758890-6f1a3d77b2d6?q=80&w=1200",
+    desc: "Soft floral with creamy sweetness."
+  },
+  {
+    name: "Moon Dew",
+    price: 279000,
+    img: "https://images.unsplash.com/photo-1595429035839-c99c298ffdde?q=80&w=1200",
+    desc: "Fresh, calm & elegant."
+  },
+  {
+    name: "Velvet Kiss",
+    price: 319000,
+    img: "https://images.unsplash.com/photo-1557683316-973673baf926?q=80&w=1200",
+    desc: "Sweet, sexy & memorable."
+  },
+  {
+    name: "Azure Emotion",
+    price: 309000,
+    img: "https://images.unsplash.com/photo-1592945403244-b3fbafd7f539?q=80&w=1200",
+    desc: "Elegant, smooth & refined."
+  },
+  {
+    name: "Azure Blue",
+    price: 299000,
+    img: "https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=1200",
+    desc: "Fresh marine vibes."
+  },
+  {
+    name: "Melon Blanc",
+    price: 269000,
+    img: "https://images.unsplash.com/photo-1562158070-956c836c91a7?q=80&w=1200",
+    desc: "Playful & fruity summer scent."
+  },
+  {
+    name: "Blue Horizon",
+    price: 289000,
+    img: "https://images.unsplash.com/photo-1542831371-29b0f74f9713?q=80&w=1200",
+    desc: "Cool & breezy."
+  },
+  {
+    name: "Midnight Addict",
+    price: 329000,
+    img: "https://images.unsplash.com/photo-1585386959984-a4155224a1ad?q=80&w=1200",
+    desc: "Intense & mysterious night scent."
+  }
+];
 
-body{
-font-family:'Inter',sans-serif;
-background:#f8f8f8;
-color:#111;
+let cart = [];
+let discount = 0;
+
+// Render product cards
+function renderProducts() {
+  let container = document.getElementById("product-list");
+  if (!container) return;
+
+  container.innerHTML = "";
+
+  products.forEach((p, i) => {
+    container.innerHTML += `
+      <div class="product">
+        <img src="${p.img}">
+        <h3>${p.name}</h3>
+        <p class="price">Rp ${p.price.toLocaleString()}</p>
+        <p class="desc">${p.desc}</p>
+        <button onclick="addToCart(${i})">Add to Cart</button>
+      </div>
+    `;
+  });
 }
 
-header{
-display:flex;
-justify-content:space-between;
-padding:25px 60px;
-background:white;
-border-bottom:1px solid #eee;
-position:sticky;
-top:0;
-z-index:10;
+// Add to cart
+function addToCart(index) {
+  cart.push(products[index]);
+  updateCart();
+  toggleCart(true);
 }
 
-.logo{
-font-family:'Playfair Display',serif;
-letter-spacing:3px;
+// Update cart UI
+function updateCart() {
+  let items = document.getElementById("cartItems");
+  if (!items) return;
+
+  items.innerHTML = "";
+  let total = 0;
+
+  cart.forEach((p, idx) => {
+    items.innerHTML += `
+      <div class="cart-item">
+        <span>${p.name}</span>
+        <span>Rp ${p.price.toLocaleString()}</span>
+        <button onclick="removeFromCart(${idx})">×</button>
+      </div>
+    `;
+    total += p.price;
+  });
+
+  total = Math.floor(total - total * discount);
+  document.getElementById("cartTotal").innerText = "Total: Rp " + total.toLocaleString();
 }
 
-nav a{
-margin-left:30px;
-cursor:pointer;
+// Remove item
+function removeFromCart(idx) {
+  cart.splice(idx, 1);
+  updateCart();
 }
 
-.hero{
-height:80vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-background:#fff;
-animation:fadeIn 1s ease;
+// Toggle cart panel
+function toggleCart(open = null) {
+  let panel = document.getElementById("cartPanel");
+  if (open === true) {
+    panel.classList.add("active");
+  } else if (open === false) {
+    panel.classList.remove("active");
+  } else {
+    panel.classList.toggle("active");
+  }
 }
 
-.collection{
-padding:100px 60px;
-text-align:center;
+// Apply discount
+function applyDiscount() {
+  let code = document.getElementById("discountCode").value.trim();
+  if (code === "BENZ10") {
+    discount = 0.1;
+    alert("Discount 10% applied!");
+    updateCart();
+  } else {
+    alert("Invalid code");
+  }
 }
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:40px;
-margin-top:50px;
+// Checkout
+function checkout() {
+  if (cart.length === 0) {
+    alert("Cart is empty!");
+    return;
+  }
+
+  let phone = "628123456789"; // change to your WA
+  let message = "Halo, saya ingin order:%0A";
+
+  cart.forEach(p => {
+    message += `${p.name} - Rp ${p.price.toLocaleString()}%0A`;
+  });
+
+  message += "%0A" + document.getElementById("cartTotal").innerText;
+
+  window.open(`https://wa.me/${phone}?text=${encodeURIComponent(message)}`);
 }
 
-.product{
-background:white;
-padding:20px;
-border:1px solid #eee;
-transition:0.3s;
-cursor:pointer;
-}
-
-.product:hover{
-transform:translateY(-5px);
-box-shadow:0 10px 30px rgba(0,0,0,0.08);
-}
-
-.product img{
-width:100%;
-height:300px;
-object-fit:cover;
-margin-bottom:15px;
-}
-
-button{
-padding:10px 20px;
-background:#111;
-color:white;
-border:none;
-margin-top:10px;
-cursor:pointer;
-}
-
-.testimonial{
-padding:100px 60px;
-background:white;
-text-align:center;
-}
-
-.reviews{
-display:flex;
-gap:40px;
-margin-top:50px;
-justify-content:center;
-}
-
-.review{
-max-width:250px;
-font-style:italic;
-}
-
-.cart-panel{
-position:fixed;
-right:-400px;
-top:0;
-width:350px;
-height:100%;
-background:white;
-padding:30px;
-box-shadow:-5px 0 20px rgba(0,0,0,0.1);
-transition:0.4s;
-overflow-y:auto;
-}
-
-.cart-panel.active{
-right:0;
-}
-
-@keyframes fadeIn{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
-}
+renderProducts();
